@@ -1,0 +1,266 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Team Terra - Eco Tracker</title>
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- Fonts: Poppins (Headings) and DM Sans (Body) -->
+    <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;700&family=Poppins:wght@500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <div class="mobile-wrapper">
+        <div class="app-container">
+            
+            <!-- Header -->
+            <header>
+                <div class="brand">
+                    <!-- Ensure 'logo.png' is in your folder -->
+                    <img src="\icons-images\LOGO.png" alt="Team Terra Logo"> 
+                </div>
+            </header>
+
+            <!-- PAGE 1: HOME -->
+            <section id="home-page" class="page active">
+                
+                <!-- Streak Card -->
+                <div class="card streak-card-home" onclick="showPage('result-page')"> <!-- Clickable for demo -->
+                    <div class="card-header-row">
+                        <div class="streak-title">
+                            <i class="fa-solid fa-fire text-orange"></i> Eco Streak
+                        </div>
+                        <i class="fa-solid fa-chevron-right arrow-icon"></i>
+                    </div>
+                    <div class="streak-days" id="home-streak-val">1 Days</div>
+                    <div class="streak-sub">Keep it going!</div>
+                </div>
+
+                <!-- Hero Section -->
+                <div class="hero-section">
+                    <h1>WHAT'S YOUR <br> <span>CARBON FOOTPRINT</span></h1>
+                    <p>Track your daily activities and understand your carbon impact with simple, data-driven insights.</p>
+                </div>
+
+                <!-- Hero Image -->
+                <div class="hero-img-box">
+                    <img src="icons-images\banner.jpeg" alt="Eco World">
+                </div>
+
+                <!-- Action Buttons -->
+                <div class="action-buttons">
+                    <button class="btn btn-green" onclick="showPage('calculate-page')">Calculate Footprint</button>
+                    <button class="btn btn-white" onclick="showPage('eco-tips')">Eco Tips</button>
+                </div>
+
+                <!-- How It Works -->
+                <div class="how-it-works">
+                    <h3>HOW IT WORKS</h3>
+                    <div class="steps-row">
+                        <div class="step">
+                            <div class="icon-circle"><i class="fa-solid fa-calculator"></i></div>
+                            <span class="step-text">Calculate<br>Impact</span>
+                        </div>
+                        <div class="step">
+                            <div class="icon-circle"><i class="fa-solid fa-leaf"></i></div>    <!--<<<-- We Take this icone from Font Awesome Icone website --->
+                            <span class="step-text">Change<br>Habits</span>
+                        </div>
+                        <div class="step">
+                            <div class="icon-circle"><i class="fa-solid fa-earth-americas"></i></div>
+                            <span class="step-text">Protect Our<br>Future</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- About Us Snippet -->
+                <div class="about-snippet">
+                    <h4>ABOUT US:</h4>
+                    <p>We are a team of enthusiastic students participating in our first hackathon.
+                     Our goal is to build simple, meaningful tech solutions that raise awareness about 
+                     sustainability and encourage eco-friendly habits through innovation and teamwork.</p>
+                </div>
+            </section>
+
+
+            <!-- PAGE 2: CALCULATOR -->
+
+
+            <section id="calculate-page" class="page hidden">
+                <div class="page-header">
+                    <h2>Calculate Footprint</h2>
+                    <p>Enter your daily activities to estimate your carbon footprint.</p>
+                </div>
+
+                <form id="calc-form">
+                    <!-- Transport -->
+                    <div class="input-card">
+                        <label><i class="fa-solid fa-car"></i> Transport</label>
+                        <div class="split-input">
+                            <input type="number" id="inp-transport" value="0">
+                            <div class="select-wrapper">
+                                <select>
+                                    <option>km by Car</option>
+                                    <option>km by Bus</option>
+                                </select>
+                                <i class="fa-solid fa-chevron-down"></i>
+                            </div>
+                        </div>
+                        <small>Ex: km by car, km by bus </small>
+                    </div>
+
+                    <!-- Energy -->
+                    <div class="input-card">
+                        <label><i class="fa-solid fa-lightbulb"></i> Energy Usage(Hours)</label>
+                        <div class="split-input">
+                            <input type="number" id="inp-energy" value="0">
+                            <div class="select-wrapper">
+                                <select>
+                                    <option>Hours Used</option>
+                                    <option>Gas (Liters)</option>
+                                </select>
+                                <i class="fa-solid fa-chevron-down"></i>
+                            </div>
+                        </div>
+                        <small>Ex: Total hours appliances were used today</small>
+                    </div>
+
+                    <!-- Food -->
+                    <div class="input-card">
+                        <label><i class="fa-solid fa-utensils"></i> Food</label>
+                        <div class="split-input">
+                            <input type="number" id="inp-food" value="0">
+                            <div class="static-unit">Meat-based meals</div>
+                        </div>
+                        <small>Ex: INR spent on goods</small>
+                    </div>
+
+                    <!-- Purchases -->
+                    <div class="input-card">
+                        <label><i class="fa-solid fa-bag-shopping"></i> Purchases</label>
+                        <div class="split-input">
+                            <input type="number" id="inp-purchase" value="0">
+                            <div class="select-wrapper">
+                                <select>
+                                    <option>INR</option>
+                                    <!-- <option>USD</option> -->
+                                </select>
+                                <i class="fa-solid fa-chevron-down"></i>
+                            </div>
+                        </div>
+                        <small>Ex: INR spent on goods</small>
+                    </div>
+
+                    <button type="button" class="btn btn-green mt-20" onclick="calculateResult()">Calculate</button>
+                </form>
+
+                <div class="footer-estimate">
+                    <span>Daily Carbon Footprint Estimate:</span>
+                    <div class="est-val"><span id="preview-score">--</span> kg CO₂ <i class="fa-solid fa-leaf"></i></div>
+                </div>
+            </section>
+
+             <!-- PAGE 3: ECO TIPS  -->
+            <section id="eco-tips" class="page">
+                <div class="et">
+                    <div class="jonson">
+                        <h1>Tips to follow</h1>
+                        <br>
+                        <h3>1. Switch to LED bulbs to cut electricity use significantly.<br>
+                            2.🚶 Walk or cycle for short trips instead of using a vehicle.<br>
+                            3.🔌 Turn off appliances at the switch when not in use.<br>
+                            4. Carry a reusable bottle and bag to reduce plastic waste.<br>
+                            5.🚆 Prefer public transport or carpooling whenever possible.<br>
+                            6.🌳 Plant and care for trees to offset carbon emissions.<br>
+                            7.Increase plant-based meals whenever possible.<br>
+                            8.Choose reusable and long-lasting products.<br>
+                            9.Avoid fast fashion and single-use items.<br>
+                           10.Cut single-use plastic ,  save waste and carbon<br>
+                        </h3>
+                    </div>
+                    <button class="btn-btn-green mt-20" onclick="showPage('home--page')"Back To Home Page></button>
+                </div>
+            </section>
+
+            <!-- PAGE 3: RESULT -->
+            <section id="result-page" class="page hidden">
+                
+                <!-- Main Result Card -->
+                <div class="card result-card">
+                    <div class="card-header-row">
+                        <div class="streak-title">
+                            <i class="fa-solid fa-fire text-orange"></i> Eco Streak
+                        </div>
+                    </div>
+                    
+                    <!-- Cute Earth Graphic -->
+                    <div class="earth-container">
+                        <img src="icons-images\protect our future1.png" class="earth-icon" alt="Happy Earth">
+                        <div class="sparkle s1">✨</div>
+                        <div class="sparkle s2">✨</div>
+                    </div>
+
+                    <div class="status-msg">
+                        <i class="fa-solid fa-circle-check"></i> Today Logged Successfully!
+                    </div>
+
+                    <div class="score-pill">
+                        <span id="final-score">7.2</span> kg CO₂ <i class="fa-solid fa-leaf"></i>
+                    </div>
+
+                    <!-- Impact Warning (Dynamic class: low, medium, high) -->
+                    <div class="impact-badge medium-impact" id="impact-badge">
+                        <i class="fa-solid fa-triangle-exclamation"></i> <span id="impact-text">Medium Impact</span>
+                    </div>
+
+                    <div class="tip-line">
+                        <span class="tip-bold">Tip:</span>💡 Use public transport & reduce electricity use
+                    </div>
+                </div>
+
+                <!-- Streak Tracker -->
+                <div class="card streak-tracker">
+                    <div class="tracker-header">
+                        <i class="fa-solid fa-fire text-orange"></i> Streak: <span id="final-streak-val">1 Days</span>
+                    </div>
+
+                    <div class="badges-container">
+                        <!-- 3 Days Badge -->
+                        <div class="badge-item active">
+                            <div class="badge-circle">
+                                <i class="fa-solid fa-seedling"></i>
+                                <div class="check-mark"><i class="fa-solid fa-check"></i></div>
+                            </div>
+                            <span class="days-label">3 days</span>
+                            <span class="rank-label">Green<br>Beginner</span>
+                        </div>
+
+                        <!-- 7 Days Badge -->
+                        <div class="badge-item" id="badge-7">
+                            <div class="badge-circle">
+                                <i class="fa-solid fa-globe"></i>
+                                <div class="check-mark"><i class="fa-solid fa-check"></i></div>
+                            </div>
+                            <span class="days-label">7 days</span>
+                            <span class="rank-label">Eco<br>Warrior</span>
+                        </div>
+
+                        <!-- 14 Days Badge -->
+                        <div class="badge-item" id="badge-14">
+                            <div class="badge-circle">
+                                <i class="fa-solid fa-earth-asia"></i>
+                                <div class="check-mark"><i class="fa-solid fa-check"></i></div>
+                            </div>
+                            <span class="days-label">14 days</span>
+                            <span class="rank-label">Planet<br>Protector</span>
+                        </div>
+                    </div>
+                </div>
+                <button class="btn btn-green mt-20" onclick="showPage('home-page')">Log Tomorrow's Footprint</button>
+            </section>
+        </div>
+    </div>
+    <script src="script.js"></script>
+</body>
+</html>
